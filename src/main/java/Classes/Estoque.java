@@ -12,26 +12,26 @@ import javax.swing.table.DefaultTableModel;
 
 public class Estoque {
 
-    public void mostrarEstoque(JTable paramTableLivros) {
+    public void mostrarEstoque(JTable table) {
         ConnectionFactory objetoConexao = new ConnectionFactory();
 
         DefaultTableModel modelo = new DefaultTableModel();
 
         String sql = "";
 
-        modelo.addColumn("ID");
-        modelo.addColumn("Título");
-        modelo.addColumn("Autor");
-        modelo.addColumn("Disponível");
-        modelo.addColumn("Reservado");
-        modelo.addColumn("Emprestado para");
-        modelo.addColumn("Emprestado ");
+        modelo.addColumn("código");
+        modelo.addColumn("descrição");
+        modelo.addColumn("fornecedor");
+        modelo.addColumn("data de registro");
+        modelo.addColumn("preço");
+        modelo.addColumn("quantidade");
+        modelo.addColumn("unidade de medida");
 
-        paramTableLivros.setModel(modelo);
+        table.setModel(modelo);
 
         sql = "SELECT * FROM tb_estoque;";
 
-        String[] dados = new String[6];
+        String[] dados = new String[7];
 
         Statement st;
 
@@ -51,27 +51,26 @@ public class Estoque {
                 modelo.addRow(dados);
             }
 
-            paramTableLivros.setModel(modelo);
+            table.setModel(modelo);
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Não mostrou o registro. Erro: " + e.toString());
         }
     }
 
-    public void selecionarEstoque(JTable paramTableLivros, JTextField paramId, JTextField paramTitulo, JTextField paramAutor, JTextField paramDisponivel, JTextField paramReservado, JTextField paramEmprestadoPara, JTextField paramEmprestado) {
+    public void selecionarEstoque(JTable table, JTextField id, JTextField descricao,
+            JTextField fornecedor, JTextField data, JTextField preco, JTextField quantidade, JTextField unidadeDeMedida) {
         try {
-            int linha = paramTableLivros.getSelectedRow();
+            int linha = table.getSelectedRow();
 
             if (linha >= 0) {
-                paramId.setText(paramTableLivros.getValueAt(linha, 0).toString());
-                paramTitulo.setText(paramTableLivros.getValueAt(linha, 1).toString());
-                paramAutor.setText(paramTableLivros.getValueAt(linha, 2).toString());
-                paramDisponivel.setText(paramTableLivros.getValueAt(linha, 3).toString());
-                paramReservado.setText(paramTableLivros.getValueAt(linha, 4).toString());
-                paramEmprestadoPara.setText(paramTableLivros.getValueAt(linha, 5).toString());
-                paramEmprestado.setText(paramTableLivros.getValueAt(linha, 6).toString());
-                // colocar mais um aqui
-
+                id.setText(table.getValueAt(linha, 0).toString());
+                descricao.setText(table.getValueAt(linha, 1).toString());
+                fornecedor.setText(table.getValueAt(linha, 2).toString());
+                data.setText(table.getValueAt(linha, 3).toString());
+                preco.setText(table.getValueAt(linha, 4).toString());
+                quantidade.setText(table.getValueAt(linha, 5).toString());
+                unidadeDeMedida.setText(table.getValueAt(linha, 6).toString());
             } else {
                 JOptionPane.showMessageDialog(null, "Não selecionou o registro. Erro: ");
             }
