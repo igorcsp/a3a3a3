@@ -2,7 +2,7 @@ create database db_almoxarifado;
 
 use db_almoxarifado;
 
-create table tb_estoque( codigo int primary key auto_increment, descricao varchar(50), fornecedor varchar(50), dataregistro Date, preco double, quantidade int, unidadeDeMedida varchar(10), valorTotal double );
+create table tb_estoque( codigo int primary key auto_increment, descricao varchar(50), fornecedor varchar(50), dataregistro Date, preco double, quantidade int, unidadeDeMedida varchar(10));
 
 create table tb_funcionarios( id int primary key auto_increment, nome varchar(50) );
 
