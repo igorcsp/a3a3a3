@@ -1,8 +1,8 @@
 package Classes;
 
-
 import ConnectionFactory.ConnectionFactory;
 import java.sql.CallableStatement;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
@@ -76,6 +76,61 @@ public class Estoque {
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Select Error: " + e.toString());
+        }
+
+    }
+
+    public void adicionarItemEstoque(JTextField descricao, JTextField fornecedor, JTextField dataregistro, JTextField preco, JTextField quantidade, JTextField unidadeDeMedida) {
+        ConnectionFactory objConexao = new ConnectionFactory();
+        String adicionar = "INSERT INTO tb_estoque (descricao , fornecedor , dataregistro, preco , quantidade, unidadeDeMedida) VALUES (?, ?, ?, ?, ?, ?)";
+        try {
+            CallableStatement cs = objConexao.obterConexao().prepareCall(adicionar);
+            cs.setString(1, descricao.getText());
+            cs.setString(2, fornecedor.getText());
+            cs.setString(3, dataregistro.getText());
+            cs.setString(4, preco.getText());
+            cs.setString(5, quantidade.getText());
+            cs.setString(6, unidadeDeMedida.getText());
+
+            cs.execute();
+            JOptionPane.showMessageDialog(null, "Novo registro inserido corretamente!");
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Inserir Erro: " + e.toString());
+        }
+    }
+
+    public void alterarItemEstoque(JTextField descricao, JTextField fornecedor, JTextField dataregistro, JTextField preco, JTextField quantidade, JTextField unidadeDeMedida, JTextField id) {
+        ConnectionFactory objConexao = new ConnectionFactory();
+        String modificar = "UPDATE tb_estoque SET descricao=?, fornecedor=?, dataregistro=?, preco=?, quantidade=?, unidadeDeMedida=? WHERE codigo=?;";
+        try {
+            CallableStatement cs = objConexao.obterConexao().prepareCall(modificar);
+            cs.setString(1, descricao.getText());
+            cs.setString(2, fornecedor.getText());
+            cs.setString(3, dataregistro.getText());
+            cs.setDouble(4, Double.parseDouble(preco.getText()));
+            cs.setInt(5, Integer.parseInt(quantidade.getText()));
+            cs.setString(6, unidadeDeMedida.getText());
+            cs.setInt(7, Integer.parseInt(id.getText()));
+
+            cs.execute();
+            JOptionPane.showMessageDialog(null, "Alterado com sucesso!");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Alterar Erro: " + e.toString());
+        }
+    }
+
+    public void excluirItemEstoque(JTextField id) {
+        ConnectionFactory objConexao = new ConnectionFactory();
+        String excluir = "DELETE FROM tb_estoque WHERE codigo=?;";
+
+        try {
+            CallableStatement cs = objConexao.obterConexao().prepareCall(excluir);
+            cs.setInt(1, Integer.parseInt(id.getText()));
+            cs.execute();
+            JOptionPane.showMessageDialog(null, "Linha excluída com sucesso!");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Excluir Erro: " + e.toString());
         }
 
     }
