@@ -17,7 +17,7 @@ public class ConnectionFactory {
 //            .load();
 
     private static final String usuario = "root";
-    private static final String senha = "usjt"; // "DB_PASSWORD"
+    private static final String senha = "1234"; // "DB_PASSWORD"
     private static final String bd = "db_almoxarifado"; // "DB_DATABASE"
     private static final String host = "localhost";
     private static final String porta = "3306";

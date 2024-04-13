@@ -183,7 +183,10 @@ public class FuncionariosTela extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Funcionarios funcionarios = new Funcionarios();
-        funcionarios.adicionarFuncionario(id, nome);
+        funcionarios.adicionarFuncionario(nome);
+        
+        id.setText("");
+        nome.setText("");
 
         funcionarios.mostrarFuncionarios(tabelaFuncionarios);
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -192,12 +195,15 @@ public class FuncionariosTela extends javax.swing.JFrame {
         Funcionarios funcionarios = new Funcionarios();
         funcionarios.excluirFuncionario(id);
         
+        id.setText("");
+        nome.setText("");
+        
         funcionarios.mostrarFuncionarios(tabelaFuncionarios);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         Funcionarios funcionarios = new Funcionarios();
-        funcionarios.alterarFuncionario(nome);
+        funcionarios.alterarFuncionario(nome, id);
         
         funcionarios.mostrarFuncionarios(tabelaFuncionarios);
         

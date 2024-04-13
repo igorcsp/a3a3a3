@@ -43,7 +43,6 @@ public class Funcionarios {
             while (rs.next()) {
                 dados[0] = rs.getString(1);
                 dados[1] = rs.getString(2);
-                
 
                 modelo.addRow(dados);
             }
@@ -72,13 +71,12 @@ public class Funcionarios {
 
     }
     
-    public void adicionarFuncionario(JTextField id, JTextField funcionario) {
+    public void adicionarFuncionario(JTextField funcionario) {
         ConnectionFactory objConexao = new ConnectionFactory();
-        String adicionar = "INSERT INTO tb_funcionarios (id , nome ) VALUES (?, ?)";
+        String adicionar = "INSERT INTO tb_funcionarios (nome) VALUES (?)";
         try {
             CallableStatement cs = objConexao.obterConexao().prepareCall(adicionar);
-            cs.setInt(1, Integer.parseInt(id.getText()));
-            cs.setString(2, funcionario.getText());
+            cs.setString(1, funcionario.getText());
             
             cs.execute();
             JOptionPane.showMessageDialog(null, "Novo registro inserido corretamente!");
@@ -88,12 +86,13 @@ public class Funcionarios {
         }
     }
     
-    public void alterarFuncionario(JTextField nome) {
+    public void alterarFuncionario(JTextField nome, JTextField id) {
         ConnectionFactory objConexao = new ConnectionFactory();
-        String modificar = "UPDATE tb_funcionarios SET nome=? WHERE codigo=?;";
+        String modificar = "UPDATE tb_funcionarios SET nome=? WHERE id=?;";
         try {
             CallableStatement cs = objConexao.obterConexao().prepareCall(modificar);
             cs.setString(1, nome.getText());
+            cs.setInt(2, Integer.parseInt(id.getText()));
 
             cs.execute();
             JOptionPane.showMessageDialog(null, "Alterado com sucesso!");
@@ -104,7 +103,7 @@ public class Funcionarios {
     
     public void excluirFuncionario(JTextField id) {
         ConnectionFactory objConexao = new ConnectionFactory();
-        String excluir = "DELETE FROM tb_funcionarios WHERE codigo=?;";
+        String excluir = "DELETE FROM tb_funcionarios WHERE id=?;";
 
         try {
             CallableStatement cs = objConexao.obterConexao().prepareCall(excluir);
