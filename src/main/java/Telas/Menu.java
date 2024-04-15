@@ -4,6 +4,8 @@
  */
 package Telas;
 
+import Classes.Movimentacoes;
+
 /**
  *
  * @author 823159742
@@ -54,6 +56,11 @@ public class Menu extends javax.swing.JFrame {
         });
 
         jButton3.setText("Movimentações");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Fornecedores");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -135,6 +142,13 @@ public class Menu extends javax.swing.JFrame {
         
         this.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        MovimentacoesTela movimentacoes = new MovimentacoesTela();
+        movimentacoes.setVisible(true);
+        
+        this.dispose();
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
