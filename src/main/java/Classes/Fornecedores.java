@@ -17,7 +17,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author 823159742
  */
-public class Fornecedores {
+public class Fornecedores { // refazer essa porra, ta dando erro porr causa do big int e do int do java acho
     public void mostrarFornecedores(JTable table) {
         ConnectionFactory objetoConexao = new ConnectionFactory();
 
@@ -25,6 +25,7 @@ public class Fornecedores {
 
         String sql = "";
 
+        modelo.addColumn("ID");
         modelo.addColumn("CNPJ");
         modelo.addColumn("Razão Social");
         modelo.addColumn("Tipo de produto");
@@ -33,7 +34,7 @@ public class Fornecedores {
 
         sql = "SELECT * FROM tb_fornecedor;";
 
-        String[] dados = new String[3];
+        String[] dados = new String[4];
 
         Statement st;
 
@@ -45,6 +46,7 @@ public class Fornecedores {
                 dados[0] = rs.getString(1);
                 dados[1] = rs.getString(2);
                 dados[2] = rs.getString(3);
+                dados[3] = rs.getString(4);
 
                 modelo.addRow(dados);
             }
@@ -56,14 +58,15 @@ public class Fornecedores {
         }
     }
 
-    public void selecionarFornecedores(JTable table, JTextField id, JTextField nome, JTextField tipo) {
+    public void selecionarFornecedores(JTable table, JTextField id, JTextField cnpj, JTextField nome, JTextField tipo) {
         try {
             int linha = table.getSelectedRow();
 
             if (linha >= 0) {
                 id.setText(table.getValueAt(linha, 0).toString());
-                nome.setText(table.getValueAt(linha, 1).toString());
-                tipo.setText(table.getValueAt(linha, 2).toString());
+                cnpj.setText(table.getValueAt(linha, 1).toString());
+                nome.setText(table.getValueAt(linha, 2).toString());
+                tipo.setText(table.getValueAt(linha, 3).toString());
             } else {
                 JOptionPane.showMessageDialog(null, "Não selecionou o registro. Erro: ");
             }
@@ -90,15 +93,15 @@ public class Fornecedores {
         }
     }
 
-    public void alterarFornecedor(JTextField nome, JTextField endereco, JTextField cnpj) {
+    public void alterarFornecedor(JTextField cnpj, JTextField nome, JTextField endereco, JTextField id) {
         ConnectionFactory objConexao = new ConnectionFactory();
-        String modificar = "UPDATE tb_fornecedor SET cnpj=?, razao_social=?, endereco=? WHERE cnpj=?;";
+        String modificar = "UPDATE tb_fornecedor SET cnpj=?, razao_social=?, endereco=? WHERE id=?;";
         try {
             CallableStatement cs = objConexao.obterConexao().prepareCall(modificar);
-            cs.setInt(1, Integer.parseInt(cnpj.getText()));
+            cs.setString(1, cnpj.getText());
             cs.setString(2, nome.getText());
             cs.setString(3, endereco.getText());
-            cs.setInt(4, Integer.parseInt(cnpj.getText()));
+            cs.setInt(4, Integer.parseInt(id.getText()));
             
             cs.execute();
             JOptionPane.showMessageDialog(null, "Alterado com sucesso!");
@@ -109,7 +112,7 @@ public class Fornecedores {
 
     public void excluirItemEstoque(JTextField id) {
         ConnectionFactory objConexao = new ConnectionFactory();
-        String excluir = "DELETE FROM tb_fornecedor WHERE cnpj=?;";
+        String excluir = "DELETE FROM tb_fornecedor WHERE id=?;";
 
         try {
             CallableStatement cs = objConexao.obterConexao().prepareCall(excluir);

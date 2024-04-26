@@ -263,7 +263,7 @@ public class MovimentacoesTela extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         Movimentacoes mov = new Movimentacoes();
-        mov.alterarMovimentacoes(tipo, produto, quantidade, funcionario, data);
+        mov.alterarMovimentacoes(tipo, produto, quantidade, funcionario, data, id);
         
         mov.mostrarMovimentacoes(tableMovimentacoes);
         tipo.setText("");

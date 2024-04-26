@@ -102,16 +102,17 @@ public class Movimentacoes {
         }
     }
 
-    public void alterarMovimentacoes(JTextField tipoDeMovimentacao, JTextField quantidade, JTextField funcionario, JTextField data_retirada, JTextField idMovimentacoes) {
+    public void alterarMovimentacoes(JTextField tipoDeMovimentacao, JTextField produto,  JTextField quantidade, JTextField funcionario, JTextField data_retirada, JTextField idMovimentacoes) {
         ConnectionFactory objConexao = new ConnectionFactory();
         String modificar = "UPDATE tb_movimentacoes SET tipoDeMovimentacao=?, produto=?, quantidade=?, funcionario=?,  data_retirada=? WHERE idMovimentacoes=?;";
         try {
             CallableStatement cs = objConexao.obterConexao().prepareCall(modificar);
             cs.setString(1, tipoDeMovimentacao.getText());
-            cs.setInt(2, Integer.parseInt(quantidade.getText()));
-            cs.setString(3, funcionario.getText());
-            cs.setString(4, data_retirada.getText());
-            cs.setInt(5, Integer.parseInt(modificar));
+            cs.setString(2, produto.getText());
+            cs.setInt(3, Integer.parseInt(quantidade.getText()));
+            cs.setString(4, funcionario.getText());
+            cs.setString(5, data_retirada.getText());
+            cs.setInt(6, Integer.parseInt(idMovimentacoes.getText()));
 
             cs.execute();
             JOptionPane.showMessageDialog(null, "Alterado com sucesso!");
