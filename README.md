@@ -2,6 +2,7 @@ create database db_almoxarifado;
 
 use db_almoxarifado;
 
+--FUNCIONARIOS
 create table tb_funcionarios(
     id int primary key auto_increment,
     nome varchar(50) not null
@@ -12,25 +13,61 @@ insert into
 values
     ('Igor');
 
+insert into
+    tb_funcionarios(nome)
+values
+    ('Ana');
+
+insert into
+    tb_funcionarios(nome)
+values
+    ('Carlos');
+
+insert into
+    tb_funcionarios(nome)
+values
+    ('Maria');
+
+--FORNECEDORES
 create table tb_fornecedor(
-    cnpj bigint primary key,
-    razao_social varchar(50) unique not null,
-    endereco varchar(50) not null
+    id int primary key,
+    cnpj varchar(40),
+    razao_social varchar(50),
+    endereco varchar(50)
 );
 
 insert into
     tb_fornecedor(cnpj, razao_social, endereco)
 values
     (
-        12345678901234,
+        '12345678901234',
         'Fornecedor LTDA',
         'Rua do Fornecedor'
     );
 
+insert into
+    tb_fornecedor(cnpj, razao_social, endereco)
+values
+    (
+        '98765432109876',
+        'Fornecedor ABC Ltda',
+        'Avenida do Fornecedor, 123'
+    );
+
+insert into
+    tb_fornecedor(cnpj, razao_social, endereco)
+values
+    (
+        '56789012345678',
+        'Fornecedor XYZ Ltda',
+        'Rua do Comércio, 456'
+    );
+
+--ESTOQUE
 create table tb_estoque(
     codigo int primary key auto_increment,
     descricao varchar(50) not null,
-    fornecedor varchar(50) not null,
+    fornecedor varchar(40) not null,
     dataregistro Date,
     preco real not null,
     quantidade int not null,
@@ -49,20 +86,59 @@ insert into
 values
     (
         'Material',
-        'Fornecedor',
-        '23-02-20',
+        '12345678901234',
+        '2020-02-23',
         4.90,
         15,
         'Kg'
     );
 
+insert into
+    tb_estoque (
+        descricao,
+        fornecedor,
+        dataregistro,
+        preco,
+        quantidade,
+        unidadeDeMedida
+    )
+values
+    (
+        'Parafuso',
+        '98765432109876',
+        '2024-05-10',
+        1.50,
+        100,
+        'Unidade'
+    );
+
+insert into
+    tb_estoque (
+        descricao,
+        fornecedor,
+        dataregistro,
+        preco,
+        quantidade,
+        unidadeDeMedida
+    )
+values
+    (
+        'Fio de Cobre',
+        '56789012345678',
+        '2024-05-10',
+        10.75,
+        50,
+        'Metro'
+    );
+
+--MOVIMENTACOES
 create table tb_movimentacoes(
     idMovimentacoes int primary key auto_increment,
     tipoDeMovimentacao varchar(20) not null,
     produto varchar(50) not null,
     quantidade int not null,
     funcionario int,
-    data_retirada Date not null
+    data_retirada Date
 );
 
 insert into
