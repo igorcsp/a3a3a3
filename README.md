@@ -2,7 +2,7 @@ create database db_almoxarifado;
 
 use db_almoxarifado;
 
---FUNCIONARIOS
+-- FUNCIONARIOS
 create table tb_funcionarios(
     id int primary key auto_increment,
     nome varchar(50) not null
@@ -28,9 +28,9 @@ insert into
 values
     ('Maria');
 
---FORNECEDORES
+-- FORNECEDORES
 create table tb_fornecedor(
-    id int primary key,
+    id int primary key auto_increment,
     cnpj varchar(40),
     razao_social varchar(50),
     endereco varchar(50)
@@ -63,7 +63,7 @@ values
         'Rua do Comércio, 456'
     );
 
---ESTOQUE
+-- ESTOQUE
 create table tb_estoque(
     codigo int primary key auto_increment,
     descricao varchar(50) not null,
@@ -131,7 +131,7 @@ values
         'Metro'
     );
 
---MOVIMENTACOES
+-- MOVIMENTACOES
 create table tb_movimentacoes(
     idMovimentacoes int primary key auto_increment,
     tipoDeMovimentacao varchar(20) not null,
