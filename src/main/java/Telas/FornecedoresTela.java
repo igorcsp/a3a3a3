@@ -211,7 +211,7 @@ public class FornecedoresTela extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         Fornecedores fornecedores = new Fornecedores();
-        fornecedores.excluirItemEstoque(cnpj);
+        fornecedores.excluirItemEstoque(id);
         fornecedores.mostrarFornecedores(tabelaFornecedores);
         
         id.setText("");
@@ -238,7 +238,7 @@ public class FornecedoresTela extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         Fornecedores fornecedores = new Fornecedores();
-        fornecedores.alterarFornecedor(id, cnpj, razaoSocial, endereco);
+        fornecedores.alterarFornecedor(cnpj, razaoSocial, endereco, id);
         fornecedores.mostrarFornecedores(tabelaFornecedores);
 
     }//GEN-LAST:event_jButton3ActionPerformed

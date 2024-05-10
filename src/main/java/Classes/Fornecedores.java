@@ -6,7 +6,10 @@ package Classes;
 
 import ConnectionFactory.ConnectionFactory;
 import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -28,7 +31,7 @@ public class Fornecedores { // refazer essa porra, ta dando erro porr causa do b
         modelo.addColumn("ID");
         modelo.addColumn("CNPJ");
         modelo.addColumn("Razão Social");
-        modelo.addColumn("Tipo de produto");
+        modelo.addColumn("Endereço");
 
         table.setModel(modelo);
 
@@ -58,7 +61,7 @@ public class Fornecedores { // refazer essa porra, ta dando erro porr causa do b
         }
     }
 
-    public void selecionarFornecedores(JTable table, JTextField id, JTextField cnpj, JTextField nome, JTextField tipo) {
+    public void selecionarFornecedores(JTable table, JTextField id, JTextField cnpj, JTextField nome, JTextField endereco) {
         try {
             int linha = table.getSelectedRow();
 
@@ -66,7 +69,7 @@ public class Fornecedores { // refazer essa porra, ta dando erro porr causa do b
                 id.setText(table.getValueAt(linha, 0).toString());
                 cnpj.setText(table.getValueAt(linha, 1).toString());
                 nome.setText(table.getValueAt(linha, 2).toString());
-                tipo.setText(table.getValueAt(linha, 3).toString());
+                endereco.setText(table.getValueAt(linha, 3).toString());
             } else {
                 JOptionPane.showMessageDialog(null, "Não selecionou o registro. Erro: ");
             }
@@ -109,7 +112,7 @@ public class Fornecedores { // refazer essa porra, ta dando erro porr causa do b
             JOptionPane.showMessageDialog(null, "Alterar Erro: " + e.toString());
         }
     }
-
+    
     public void excluirItemEstoque(JTextField id) {
         ConnectionFactory objConexao = new ConnectionFactory();
         String excluir = "DELETE FROM tb_fornecedor WHERE id=?;";
