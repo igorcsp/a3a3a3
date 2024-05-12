@@ -2,7 +2,7 @@ create database db_almoxarifado;
 
 use db_almoxarifado;
 
--- FUNCIONARIOS
+-- FUNCIONARIOS 
 create table tb_funcionarios(
     id int primary key auto_increment,
     nome varchar(50)
@@ -16,19 +16,29 @@ values
 insert into
     tb_funcionarios(nome)
 values
-    ('Ana');
+    ('João');
 
 insert into
     tb_funcionarios(nome)
 values
-    ('Carlos');
+    ('Lucas');
 
 insert into
     tb_funcionarios(nome)
 values
-    ('Maria');
+    ('Lucão');
 
--- FORNECEDORES
+insert into
+    tb_funcionarios(nome)
+values
+    ('Kath');
+
+insert into
+    tb_funcionarios(nome)
+values
+    ('Mike');
+
+-- FORNECEDORES 
 create table tb_fornecedor(
     id int primary key auto_increment,
     cnpj varchar(40),
@@ -40,30 +50,66 @@ insert into
     tb_fornecedor(cnpj, razao_social, endereco)
 values
     (
-        '12345678901234',
-        'Fornecedor LTDA',
-        'Rua do Fornecedor'
+        '12345678000100',
+        'C&C Casa e Construção',
+        'Rua das Ferramentas, 123'
     );
 
 insert into
     tb_fornecedor(cnpj, razao_social, endereco)
 values
     (
-        '98765432109876',
-        'Fornecedor ABC Ltda',
-        'Avenida do Fornecedor, 123'
+        '98765432000199',
+        'Leroy Merlin',
+        'Avenida dos Materiais, 456'
     );
 
 insert into
     tb_fornecedor(cnpj, razao_social, endereco)
 values
     (
-        '56789012345678',
-        'Fornecedor XYZ Ltda',
-        'Rua do Comércio, 456'
+        '56789012000188',
+        'Telhanorte',
+        'Rua dos Acabamentos, 789'
     );
 
--- ESTOQUE
+insert into
+    tb_fornecedor(cnpj, razao_social, endereco)
+values
+    (
+        '11223344000177',
+        'Sodimac',
+        'Avenida das Construções, 321'
+    );
+
+insert into
+    tb_fornecedor(cnpj, razao_social, endereco)
+values
+    (
+        '99887766000166',
+        'Tigre',
+        'Rua das Tubulações, 654'
+    );
+
+insert into
+    tb_fornecedor(cnpj, razao_social, endereco)
+values
+    (
+        '55443322000155',
+        'Portobello Shop',
+        'Avenida dos Revestimentos, 987'
+    );
+
+insert into
+    tb_fornecedor(cnpj, razao_social, endereco)
+values
+    (
+        '66554477000144',
+        'Votorantim Cimentos',
+        'Rua dos Cimentos, 741'
+    );
+
+-- ESTOQUE 
 create table tb_estoque(
     codigo int primary key auto_increment,
     descricao varchar(50),
@@ -131,7 +177,7 @@ values
         'Metro'
     );
 
--- MOVIMENTACOES
+-- MOVIMENTACOES 
 create table tb_movimentacoes(
     idMovimentacoes int primary key auto_increment,
     tipoDeMovimentacao varchar(20),
@@ -140,14 +186,3 @@ create table tb_movimentacoes(
     funcionario int,
     data_retirada Date
 );
-
-insert into
-    tb_movimentacoes(
-        tipoDeMovimentacao,
-        produto,
-        quantidade,
-        funcionario,
-        data_retirada
-    )
-values
-    ('Entrada', 'Material', 15, 1, '2024-04-13');
