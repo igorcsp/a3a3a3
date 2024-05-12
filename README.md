@@ -2,7 +2,8 @@ create database db_almoxarifado;
 
 use db_almoxarifado;
 
--- FUNCIONARIOS;
+-- FUNCIONARIOS
+
 create table tb_funcionarios(
     id int primary key auto_increment,
     nome varchar(50)
@@ -39,6 +40,7 @@ values
     ('Mike');
 
 -- FORNECEDORES 
+
 create table tb_fornecedor(
     id int primary key auto_increment,
     cnpj char(14),
@@ -110,6 +112,7 @@ values
     );
 
 -- ESTOQUE 
+
 create table tb_estoque(
     codigo int primary key auto_increment,
     descricao varchar(50),
@@ -178,6 +181,7 @@ values
     );
 
 -- MOVIMENTACOES 
+
 create table tb_movimentacoes(
     idMovimentacoes int primary key auto_increment,
     tipoDeMovimentacao varchar(20),
