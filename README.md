@@ -113,7 +113,7 @@ values
 create table tb_estoque(
     codigo int primary key auto_increment,
     descricao varchar(50),
-    fornecedor varchar(40),
+    fornecedor int,
     dataregistro Datetime,
     preco real,
     quantidade int,
@@ -132,8 +132,8 @@ insert into
 values
     (
         'Material',
-        '12345678901234',
-        '2020-02-23',
+        1,
+        '2020-02-23 00:00:00',
         4.90,
         15,
         'Kg'
@@ -151,8 +151,8 @@ insert into
 values
     (
         'Parafuso',
-        '98765432109876',
-        '2024-05-10',
+        2,
+        '2024-05-10 00:00:00',
         1.50,
         100,
         'Unidade'
@@ -170,8 +170,8 @@ insert into
 values
     (
         'Fio de Cobre',
-        '56789012345678',
-        '2024-05-10',
+        3,
+        '2024-05-10 00:00:00',
         10.75,
         50,
         'Metro'
