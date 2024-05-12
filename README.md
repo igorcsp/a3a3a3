@@ -5,7 +5,7 @@ use db_almoxarifado;
 -- FUNCIONARIOS
 create table tb_funcionarios(
     id int primary key auto_increment,
-    nome varchar(50) not null
+    nome varchar(50)
 );
 
 insert into
@@ -66,12 +66,12 @@ values
 -- ESTOQUE
 create table tb_estoque(
     codigo int primary key auto_increment,
-    descricao varchar(50) not null,
-    fornecedor varchar(40) not null,
+    descricao varchar(50),
+    fornecedor varchar(40),
     dataregistro Date,
-    preco real not null,
-    quantidade int not null,
-    unidadeDeMedida varchar(10) not null
+    preco real,
+    quantidade int,
+    unidadeDeMedida varchar(10)
 );
 
 insert into
@@ -134,9 +134,9 @@ values
 -- MOVIMENTACOES
 create table tb_movimentacoes(
     idMovimentacoes int primary key auto_increment,
-    tipoDeMovimentacao varchar(20) not null,
-    produto varchar(50) not null,
-    quantidade int not null,
+    tipoDeMovimentacao varchar(20),
+    produto varchar(50),
+    quantidade int,
     funcionario int,
     data_retirada Date
 );
