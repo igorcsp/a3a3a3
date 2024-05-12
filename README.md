@@ -134,25 +134,6 @@ insert into
     )
 values
     (
-        'Material',
-        1,
-        '2020-02-23 00:00:00',
-        4.90,
-        15,
-        'Kg'
-    );
-
-insert into
-    tb_estoque (
-        descricao,
-        fornecedor,
-        dataregistro,
-        preco,
-        quantidade,
-        unidadeDeMedida
-    )
-values
-    (
         'Parafuso',
         2,
         '2024-05-10 00:00:00',
