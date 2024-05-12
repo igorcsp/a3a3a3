@@ -175,10 +175,7 @@ public class FuncionariosTela extends javax.swing.JFrame {
     }//GEN-LAST:event_tabelaFuncionariosMouseClicked
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        this.dispose();
-        Menu menu = new Menu();
-        menu.setVisible(true);
-        
+        this.dispose();     
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

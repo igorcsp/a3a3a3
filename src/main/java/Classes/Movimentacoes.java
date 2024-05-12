@@ -77,8 +77,9 @@ public class Movimentacoes {
             } else {
                 JOptionPane.showMessageDialog(null, "Não selecionou o registro. Erro: ");
             }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Select Error: " + e.toString());
+        }
+        catch (Exception e) {
+            // JOptionPane.showMessageDialog(null, "Select Error: " + e.toString());
         }
 
     }

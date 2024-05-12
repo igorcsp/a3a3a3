@@ -5,6 +5,7 @@
 package Telas;
 
 import Classes.Estoque;
+import Classes.Movimentacoes;
 
 /**
  *
@@ -21,7 +22,7 @@ public class EstoqueTela extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         Estoque estoque = new Estoque();
         estoque.mostrarEstoque(tabelaEstoque);
-        
+
     }
 
     /**
@@ -37,7 +38,7 @@ public class EstoqueTela extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelaEstoque = new javax.swing.JTable();
         id = new javax.swing.JTextField();
-        descricao = new javax.swing.JTextField();
+        produto = new javax.swing.JTextField();
         fornecedor = new javax.swing.JTextField();
         dataregistro = new javax.swing.JTextField();
         preco = new javax.swing.JTextField();
@@ -55,7 +56,9 @@ public class EstoqueTela extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
         retirarBtn = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -80,60 +83,65 @@ public class EstoqueTela extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tabelaEstoque);
 
+        id.setEditable(false);
+
+        dataregistro.setEditable(false);
         dataregistro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 dataregistroActionPerformed(evt);
             }
         });
 
-        jLabel1.setText("código");
+        jLabel1.setText("Código");
 
-        jLabel2.setText("descrição");
+        jLabel2.setText("Produto");
 
-        jLabel3.setText("fornecedor");
+        jLabel3.setText("Fornecedor");
 
-        jLabel4.setText("data");
+        jLabel4.setText("Data");
 
-        jLabel5.setText("preço");
+        jLabel5.setText("Preço");
 
-        jLabel6.setText("quantidade");
+        jLabel6.setText("Quantidade");
 
-        jLabel7.setText("unidade de medida");
+        jLabel7.setText("Unidade");
 
-        jButton1.setText("incluir");
+        jButton1.setText("Novo Item");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
-        jButton2.setText("excluir");
+        jButton2.setText("Excluir");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
 
-        jButton3.setText("alterar");
+        jButton3.setText("Alterar");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
 
-        jButton4.setText("voltar");
+        jButton4.setText("Voltar");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
             }
         });
 
-        jButton5.setText("Limpar campos");
+        jButton5.setText("Limpar");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
             }
         });
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         retirarBtn.setText("Retirar");
         retirarBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -141,6 +149,31 @@ public class EstoqueTela extends javax.swing.JFrame {
                 retirarBtnActionPerformed(evt);
             }
         });
+
+        jButton6.setText("Adicionar");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButton6)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(retirarBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(retirarBtn)
+                .addGap(29, 29, 29))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -158,20 +191,37 @@ public class EstoqueTela extends javax.swing.JFrame {
                             .addComponent(jLabel1))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(descricao, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(produto, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(fornecedor, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(dataregistro, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(preco)
                             .addComponent(id)))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel6))
-                        .addGap(18, 18, 18)
+                        .addGap(20, 20, 20)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(quantidade)
-                            .addComponent(unidadeDeMedida))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(27, 27, 27)
+                                        .addComponent(jLabel6))
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(quantidade)
+                                    .addComponent(unidadeDeMedida)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jButton4)
+                                    .addComponent(jButton2))
+                                .addGap(24, 24, 24)
+                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton5)
+                                .addGap(2, 2, 2)))))
                 .addGap(16, 16, 16)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 515, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -179,29 +229,15 @@ public class EstoqueTela extends javax.swing.JFrame {
                 .addGap(29, 29, 29)
                 .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(124, 854, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(53, 53, 53)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton4)
-                        .addGap(45, 45, 45)
-                        .addComponent(retirarBtn))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton5)))
-                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(4, 4, 4)
@@ -210,7 +246,7 @@ public class EstoqueTela extends javax.swing.JFrame {
                             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(descricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(produto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -233,16 +269,18 @@ public class EstoqueTela extends javax.swing.JFrame {
                             .addComponent(unidadeDeMedida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel7))
                         .addGap(28, 28, 28)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1)
-                            .addComponent(jButton2)
-                            .addComponent(jButton5))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton3)
-                            .addComponent(jButton4)
-                            .addComponent(retirarBtn))))
-                .addContainerGap(21, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jButton1)
+                                    .addComponent(jButton2)
+                                    .addComponent(jButton5))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jButton3)
+                                    .addComponent(jButton4)))
+                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(20, 20, 20))))
         );
 
         pack();
@@ -250,14 +288,14 @@ public class EstoqueTela extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Estoque estoque = new Estoque();
-        estoque.adicionarItemEstoque(descricao, fornecedor, dataregistro, preco, quantidade, unidadeDeMedida);
-        descricao.setText("");
+        estoque.adicionarItemEstoque(produto, fornecedor, dataregistro, preco, quantidade, unidadeDeMedida);
+        produto.setText("");
         fornecedor.setText("");
         dataregistro.setText("");
         preco.setText("");
         quantidade.setText("");
         unidadeDeMedida.setText("");
-        
+
         estoque.mostrarEstoque(tabelaEstoque);
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -267,39 +305,37 @@ public class EstoqueTela extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         this.dispose();
-        Menu menu = new Menu();
-        menu.setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         Estoque estoque = new Estoque();
         estoque.excluirItemEstoque(id);
-        
-        descricao.setText("");
+
+        produto.setText("");
         fornecedor.setText("");
         dataregistro.setText("");
         preco.setText("");
         quantidade.setText("");
         unidadeDeMedida.setText("");
-        
+
         estoque.mostrarEstoque(tabelaEstoque);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void tabelaEstoqueMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaEstoqueMouseClicked
         Estoque estoque = new Estoque();
-        estoque.selecionarEstoque(tabelaEstoque, id, descricao, fornecedor, dataregistro, preco, quantidade, unidadeDeMedida);
+        estoque.selecionarEstoque(tabelaEstoque, id, produto, fornecedor, dataregistro, preco, quantidade, unidadeDeMedida);
     }//GEN-LAST:event_tabelaEstoqueMouseClicked
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         Estoque estoque = new Estoque();
-        estoque.alterarItemEstoque(descricao, fornecedor, dataregistro, preco, quantidade, unidadeDeMedida, id);
-        
+        estoque.alterarItemEstoque(produto, fornecedor, dataregistro, preco, quantidade, unidadeDeMedida, id);
+
         estoque.mostrarEstoque(tabelaEstoque);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         id.setText("");
-        descricao.setText("");
+        produto.setText("");
         fornecedor.setText("");
         dataregistro.setText("");
         preco.setText("");
@@ -309,8 +345,8 @@ public class EstoqueTela extends javax.swing.JFrame {
 
     private void retirarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_retirarBtnActionPerformed
         Estoque estoque = new Estoque();
-        estoque.retirarMateriais(quantidade, id, descricao);
-        
+        estoque.retirarMateriais(quantidade, id, produto);
+
         estoque.mostrarEstoque(tabelaEstoque);
     }//GEN-LAST:event_retirarBtnActionPerformed
 
@@ -351,7 +387,6 @@ public class EstoqueTela extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField dataregistro;
-    private javax.swing.JTextField descricao;
     private javax.swing.JTextField fornecedor;
     private javax.swing.JTextField id;
     private javax.swing.JButton jButton1;
@@ -359,6 +394,7 @@ public class EstoqueTela extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -366,9 +402,11 @@ public class EstoqueTela extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private java.awt.Label label1;
     private javax.swing.JTextField preco;
+    private javax.swing.JTextField produto;
     private javax.swing.JTextField quantidade;
     private javax.swing.JButton retirarBtn;
     private javax.swing.JTable tabelaEstoque;

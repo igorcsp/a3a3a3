@@ -123,7 +123,6 @@ public class Menu extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         EstoqueTela estoqueTela = new EstoqueTela();
         estoqueTela.setVisible(true);
-        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -133,21 +132,16 @@ public class Menu extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         FuncionariosTela funcionariosTela = new FuncionariosTela();
         funcionariosTela.setVisible(true);
-        this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         FornecedoresTela fornecedores = new FornecedoresTela();
         fornecedores.setVisible(true);
-        
-        this.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         MovimentacoesTela movimentacoes = new MovimentacoesTela();
         movimentacoes.setVisible(true);
-        
-        this.dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**

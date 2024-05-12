@@ -185,7 +185,40 @@ public class Estoque {
             css.execute();
 
             cs.execute();
-            JOptionPane.showMessageDialog(null, "Alterado com sucesso!");
+            JOptionPane.showMessageDialog(null, "Retirado com sucesso!");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro ao retirar a quantidade: " + e.toString());
+        }
+    }
+    
+    public void acrescentarQuantidade(JTextField quantidade, JTextField id, JTextField produto) {
+        ConnectionFactory objConexao = new ConnectionFactory();
+        String modificar = "UPDATE tb_estoque SET quantidade=? WHERE codigo=?;";
+        String addMovimentacoes = "INSERT INTO tb_movimentacoes(tipoDeMovimentacao, produto, quantidade, funcionario, data_retirada ) VALUES (?, ?, ?, ?, ?)";
+
+        try {
+            CallableStatement cs = objConexao.obterConexao().prepareCall(modificar);
+            CallableStatement css = objConexao.obterConexao().prepareCall(addMovimentacoes);
+
+            String input = JOptionPane.showInputDialog(null, "Digite a quantidade que deseja adicionar:");
+            int retirado = Integer.parseInt(input);
+            int updatedValue = Integer.parseInt(quantidade.getText()) + retirado;
+            Timestamp dataDeAgora = new Timestamp(System.currentTimeMillis());
+
+            cs.setInt(1, updatedValue);
+            cs.setInt(2, Integer.parseInt(id.getText()));
+
+            css.setString(1, "Entrada"); // tipo de movimento
+            css.setString(2, produto.getText()); // produto
+            css.setInt(3, retirado); //quantidade
+            css.setString(4, null); // funcionario
+            css.setString(5, dataDeAgora.toString()); // data da retirada
+
+            cs.execute();
+            css.execute();
+
+            cs.execute();
+            JOptionPane.showMessageDialog(null, "Acrescentado com sucesso!");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Erro ao retirar a quantidade: " + e.toString());
         }
