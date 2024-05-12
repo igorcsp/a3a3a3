@@ -55,6 +55,7 @@ public class EstoqueTela extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
+        retirarBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -134,6 +135,13 @@ public class EstoqueTela extends javax.swing.JFrame {
             }
         });
 
+        retirarBtn.setText("Retirar");
+        retirarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                retirarBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -178,7 +186,8 @@ public class EstoqueTela extends javax.swing.JFrame {
                         .addComponent(jButton3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton4)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(45, 45, 45)
+                        .addComponent(retirarBtn))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -231,7 +240,8 @@ public class EstoqueTela extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton3)
-                            .addComponent(jButton4))))
+                            .addComponent(jButton4)
+                            .addComponent(retirarBtn))))
                 .addContainerGap(21, Short.MAX_VALUE))
         );
 
@@ -297,6 +307,13 @@ public class EstoqueTela extends javax.swing.JFrame {
         unidadeDeMedida.setText("");
     }//GEN-LAST:event_jButton5ActionPerformed
 
+    private void retirarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_retirarBtnActionPerformed
+        Estoque estoque = new Estoque();
+        estoque.retirarMateriais(quantidade, id, descricao);
+        
+        estoque.mostrarEstoque(tabelaEstoque);
+    }//GEN-LAST:event_retirarBtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -353,6 +370,7 @@ public class EstoqueTela extends javax.swing.JFrame {
     private java.awt.Label label1;
     private javax.swing.JTextField preco;
     private javax.swing.JTextField quantidade;
+    private javax.swing.JButton retirarBtn;
     private javax.swing.JTable tabelaEstoque;
     private javax.swing.JTextField unidadeDeMedida;
     // End of variables declaration//GEN-END:variables

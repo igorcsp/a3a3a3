@@ -135,8 +135,4 @@ public class Movimentacoes {
         }
 
     }
-    
-    public void retirarMateriais() {
-        System.out.println("teste");
-    }
 }

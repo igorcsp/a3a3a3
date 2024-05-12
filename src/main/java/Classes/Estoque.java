@@ -97,16 +97,18 @@ public class Estoque {
             cs.setInt(5, Integer.parseInt(quantidade.getText()));
             cs.setString(6, unidadeDeMedida.getText());
 
-            // Testando movimentações
+            // Adicionando às movimentações/histórico
             CallableStatement css = objConexao.obterConexao().prepareCall(addMovimentacoes);
             css.setString(1, "Entrada");
             css.setString(2, descricao.getText());
 
+            // console.logs pra teste
             int testandoUmBagui = Integer.parseInt(quantidade.getText()) - 2;
+
             JOptionPane.showMessageDialog(null, quantidade);
             JOptionPane.showMessageDialog(null, testandoUmBagui);
 
-            css.setInt(3, testandoUmBagui);
+            css.setInt(3, Integer.parseInt(quantidade.getText()));
             css.setString(4, null);
             css.setString(5, dataDeAgora.toString());
 
@@ -154,9 +156,42 @@ public class Estoque {
         }
 
     }
-    
+
+    public void retirarMateriais(JTextField quantidade, JTextField id, JTextField produto) {
+        ConnectionFactory objConexao = new ConnectionFactory();
+        String modificar = "UPDATE tb_estoque SET quantidade=? WHERE codigo=?;";
+        String addMovimentacoes = "INSERT INTO tb_movimentacoes(tipoDeMovimentacao, produto, quantidade, funcionario, data_retirada ) VALUES (?, ?, ?, ?, ?)";
+
+        try {
+            CallableStatement cs = objConexao.obterConexao().prepareCall(modificar);
+            CallableStatement css = objConexao.obterConexao().prepareCall(addMovimentacoes);
+
+            String input = JOptionPane.showInputDialog(null, "Digite a quantidade que deseja retirar:");
+            String funcionario = JOptionPane.showInputDialog(null, "Digite o ID do funcionário que está retirando o material:");
+            int retirado = Integer.parseInt(input);
+            int updatedValue = Integer.parseInt(quantidade.getText()) - retirado;
+            Timestamp dataDeAgora = new Timestamp(System.currentTimeMillis());
+
+            cs.setInt(1, updatedValue);
+            cs.setInt(2, Integer.parseInt(id.getText()));
+
+            css.setString(1, "Retirada"); // tipo de movimento
+            css.setString(2, produto.getText()); // produto
+            css.setInt(3, retirado); //quantidade
+            css.setString(4, funcionario); // funcionario
+            css.setString(5, dataDeAgora.toString()); // data da retirada
+
+            cs.execute();
+            css.execute();
+
+            cs.execute();
+            JOptionPane.showMessageDialog(null, "Alterado com sucesso!");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro ao retirar a quantidade: " + e.toString());
+        }
+    }
+
     // fazer uma função de retirar e adionar itens aqui
     // tem ser JoptionPane da quantidade e insere nas movimentações 'Retirada' e o valor atualizado com a subtração 
-    
     // um botao de adicionar atualizando as movimentações
 }
