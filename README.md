@@ -2,7 +2,7 @@ create database db_almoxarifado;
 
 use db_almoxarifado;
 
--- FUNCIONARIOS 
+-- FUNCIONARIOS;
 create table tb_funcionarios(
     id int primary key auto_increment,
     nome varchar(50)
