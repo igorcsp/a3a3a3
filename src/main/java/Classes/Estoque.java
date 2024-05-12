@@ -5,6 +5,7 @@ import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -19,13 +20,13 @@ public class Estoque {
 
         String sql = "";
 
-        modelo.addColumn("código");
-        modelo.addColumn("descrição");
-        modelo.addColumn("fornecedor");
-        modelo.addColumn("data de registro");
-        modelo.addColumn("preço");
-        modelo.addColumn("quantidade");
-        modelo.addColumn("unidade de medida");
+        modelo.addColumn("Código");
+        modelo.addColumn("Produto");
+        modelo.addColumn("Fornecedor");
+        modelo.addColumn("Data de registro");
+        modelo.addColumn("Preço");
+        modelo.addColumn("Quantidade");
+        modelo.addColumn("Unidade de medida");
 
         table.setModel(modelo);
 
@@ -83,20 +84,39 @@ public class Estoque {
     public void adicionarItemEstoque(JTextField descricao, JTextField fornecedor, JTextField dataregistro, JTextField preco, JTextField quantidade, JTextField unidadeDeMedida) {
         ConnectionFactory objConexao = new ConnectionFactory();
         String adicionar = "INSERT INTO tb_estoque (descricao , fornecedor , dataregistro, preco , quantidade, unidadeDeMedida) VALUES (?, ?, ?, ?, ?, ?)";
+        String addMovimentacoes = "INSERT INTO tb_movimentacoes(tipoDeMovimentacao, produto, quantidade, funcionario, data_retirada ) VALUES (?, ?, ?, ?, ?)";
+
         try {
             CallableStatement cs = objConexao.obterConexao().prepareCall(adicionar);
             cs.setString(1, descricao.getText());
             cs.setString(2, fornecedor.getText());
-            cs.setString(3, dataregistro.getText());
+
+            Timestamp dataDeAgora = new Timestamp(System.currentTimeMillis());
+            cs.setString(3, dataDeAgora.toString());
             cs.setString(4, preco.getText());
-            cs.setString(5, quantidade.getText());
+            cs.setInt(5, Integer.parseInt(quantidade.getText()));
             cs.setString(6, unidadeDeMedida.getText());
 
+            // Testando movimentações
+            CallableStatement css = objConexao.obterConexao().prepareCall(addMovimentacoes);
+            css.setString(1, "Entrada");
+            css.setString(2, descricao.getText());
+
+            int testandoUmBagui = Integer.parseInt(quantidade.getText()) - 2;
+            JOptionPane.showMessageDialog(null, quantidade);
+            JOptionPane.showMessageDialog(null, testandoUmBagui);
+
+            css.setInt(3, testandoUmBagui);
+            css.setString(4, null);
+            css.setString(5, dataDeAgora.toString());
+
             cs.execute();
+            css.execute();
+
             JOptionPane.showMessageDialog(null, "Novo registro inserido corretamente!");
 
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Inserir Erro: " + e.toString());
+            JOptionPane.showMessageDialog(null, "Erro ao inserir registro: " + e.toString());
         }
     }
 
@@ -134,4 +154,9 @@ public class Estoque {
         }
 
     }
+    
+    // fazer uma função de retirar e adionar itens aqui
+    // tem ser JoptionPane da quantidade e insere nas movimentações 'Retirada' e o valor atualizado com a subtração 
+    
+    // um botao de adicionar atualizando as movimentações
 }

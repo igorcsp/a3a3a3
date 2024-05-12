@@ -25,8 +25,8 @@ public class Funcionarios {
 
         String sql = "";
 
-        modelo.addColumn("código");
-        modelo.addColumn("nome");
+        modelo.addColumn("Código");
+        modelo.addColumn("Nome");
 
         table.setModel(modelo);
 

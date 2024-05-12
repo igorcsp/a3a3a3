@@ -25,12 +25,12 @@ public class Movimentacoes {
 
         String sql = "";
 
-        modelo.addColumn("id");
-        modelo.addColumn("tipo");
-        modelo.addColumn("produto");
-        modelo.addColumn("quantidade");
-        modelo.addColumn("funcionário");
-        modelo.addColumn("data da retirada");
+        modelo.addColumn("ID");
+        modelo.addColumn("Tipo");
+        modelo.addColumn("Produto");
+        modelo.addColumn("Quantidade");
+        modelo.addColumn("Funcionário");
+        modelo.addColumn("Data da retirada");
 
         table.setModel(modelo);
 
@@ -90,7 +90,7 @@ public class Movimentacoes {
             CallableStatement cs = objConexao.obterConexao().prepareCall(adicionar);
             cs.setString(1, tipoDeMovimentacao.getText());
             cs.setString(2, produto.getText());
-            cs.setString(3, quantidade.getText());
+            cs.setInt(3, Integer.parseInt(quantidade.getText()));
             cs.setString(4, funcionario.getText());
             cs.setString(5, dataRetirada.getText());
 
@@ -134,5 +134,9 @@ public class Movimentacoes {
             JOptionPane.showMessageDialog(null, "Excluir Erro: " + e.toString());
         }
 
+    }
+    
+    public void retirarMateriais() {
+        System.out.println("teste");
     }
 }
