@@ -41,7 +41,7 @@ values
 -- FORNECEDORES 
 create table tb_fornecedor(
     id int primary key auto_increment,
-    cnpj varchar(40),
+    cnpj char(14),
     razao_social varchar(50),
     endereco varchar(50)
 );
@@ -114,7 +114,7 @@ create table tb_estoque(
     codigo int primary key auto_increment,
     descricao varchar(50),
     fornecedor varchar(40),
-    dataregistro Date,
+    dataregistro Datetime,
     preco real,
     quantidade int,
     unidadeDeMedida varchar(10)
@@ -184,5 +184,5 @@ create table tb_movimentacoes(
     produto varchar(50),
     quantidade int,
     funcionario int,
-    data_retirada Date
+    data_retirada Datetime
 );
