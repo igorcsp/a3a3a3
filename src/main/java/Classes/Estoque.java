@@ -115,18 +115,17 @@ public class Estoque {
         }
     }
 
-    public void alterarItemEstoque(JTextField descricao, JTextField fornecedor, JTextField dataregistro, JTextField preco, JTextField quantidade, JTextField unidadeDeMedida, JTextField id) {
+    public void alterarItemEstoque(JTextField descricao, JTextField fornecedor, JTextField dataregistro, JTextField preco, JTextField unidadeDeMedida, JTextField id) {
         ConnectionFactory objConexao = new ConnectionFactory();
-        String modificar = "UPDATE tb_estoque SET descricao=?, fornecedor=?, dataregistro=?, preco=?, quantidade=?, unidadeDeMedida=? WHERE codigo=?;";
+        String modificar = "UPDATE tb_estoque SET descricao=?, fornecedor=?, dataregistro=?, preco=?, unidadeDeMedida=? WHERE codigo=?;";
         try {
             CallableStatement cs = objConexao.obterConexao().prepareCall(modificar);
             cs.setString(1, descricao.getText());
             cs.setString(2, fornecedor.getText());
             cs.setString(3, dataregistro.getText());
             cs.setDouble(4, Double.parseDouble(preco.getText()));
-            cs.setInt(5, Integer.parseInt(quantidade.getText()));
-            cs.setString(6, unidadeDeMedida.getText());
-            cs.setInt(7, Integer.parseInt(id.getText()));
+            cs.setString(5, unidadeDeMedida.getText());
+            cs.setInt(6, Integer.parseInt(id.getText()));
 
             cs.execute();
             JOptionPane.showMessageDialog(null, "Alterado com sucesso!");
@@ -217,7 +216,4 @@ public class Estoque {
         }
     }
 
-    // fazer uma função de retirar e adionar itens aqui
-    // tem ser JoptionPane da quantidade e insere nas movimentações 'Retirada' e o valor atualizado com a subtração 
-    // um botao de adicionar atualizando as movimentações
 }
