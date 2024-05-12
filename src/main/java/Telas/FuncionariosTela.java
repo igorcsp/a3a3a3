@@ -72,9 +72,9 @@ public class FuncionariosTela extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setText("código");
+        jLabel2.setText("Código");
 
-        jLabel3.setText("nome");
+        jLabel3.setText("Nome");
 
         jButton1.setText("Incluir");
         jButton1.addActionListener(new java.awt.event.ActionListener() {

@@ -26,7 +26,7 @@ public class Estoque {
         modelo.addColumn("Data de registro");
         modelo.addColumn("Preço");
         modelo.addColumn("Quantidade");
-        modelo.addColumn("Unidade de medida");
+        modelo.addColumn("Unidade");
 
         table.setModel(modelo);
 
@@ -89,7 +89,7 @@ public class Estoque {
         try {
             CallableStatement cs = objConexao.obterConexao().prepareCall(adicionar);
             cs.setString(1, descricao.getText());
-            cs.setString(2, fornecedor.getText());
+            cs.setInt(2, Integer.parseInt(fornecedor.getText()));
 
             Timestamp dataDeAgora = new Timestamp(System.currentTimeMillis());
             cs.setString(3, dataDeAgora.toString());
@@ -101,13 +101,6 @@ public class Estoque {
             CallableStatement css = objConexao.obterConexao().prepareCall(addMovimentacoes);
             css.setString(1, "Entrada");
             css.setString(2, descricao.getText());
-
-            // console.logs pra teste
-            int testandoUmBagui = Integer.parseInt(quantidade.getText()) - 2;
-
-            JOptionPane.showMessageDialog(null, quantidade);
-            JOptionPane.showMessageDialog(null, testandoUmBagui);
-
             css.setInt(3, Integer.parseInt(quantidade.getText()));
             css.setString(4, null);
             css.setString(5, dataDeAgora.toString());
@@ -201,8 +194,8 @@ public class Estoque {
             CallableStatement css = objConexao.obterConexao().prepareCall(addMovimentacoes);
 
             String input = JOptionPane.showInputDialog(null, "Digite a quantidade que deseja adicionar:");
-            int retirado = Integer.parseInt(input);
-            int updatedValue = Integer.parseInt(quantidade.getText()) + retirado;
+            int adicionado = Integer.parseInt(input);
+            int updatedValue = Integer.parseInt(quantidade.getText()) + adicionado;
             Timestamp dataDeAgora = new Timestamp(System.currentTimeMillis());
 
             cs.setInt(1, updatedValue);
@@ -210,7 +203,7 @@ public class Estoque {
 
             css.setString(1, "Entrada"); // tipo de movimento
             css.setString(2, produto.getText()); // produto
-            css.setInt(3, retirado); //quantidade
+            css.setInt(3, adicionado); //quantidade
             css.setString(4, null); // funcionario
             css.setString(5, dataDeAgora.toString()); // data da retirada
 
